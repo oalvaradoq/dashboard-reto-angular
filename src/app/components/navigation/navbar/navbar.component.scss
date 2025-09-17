@@ -3,17 +3,15 @@
   color: #fff;
   padding: 1px 16px;
 }
-.rectangle-container-logo-alt {
+
+.app-page-header-title {
   display: flex;
   align-items: center;
+  gap: 16px;
   justify-content: center;
-  width: 87px;
-  height: 34px;
-  background-color: #fff;
-  border-radius: 3px;
-  border: 1px solid #d9d9d9;
 }
-.app-page-header-title {
+
+.app-page-header-extra {
   display: flex;
   align-items: center;
   gap: 16px;

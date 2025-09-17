@@ -1,0 +1,49 @@
+<ul class="actions-menu">
+  <ng-container>
+    <li class="option-menu">
+      <nz-avatar
+        nzText="A"
+        style="
+          background-image: url('/assets/bg_avatar.png');
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          margin: 0 5px;
+        "
+      ></nz-avatar>
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link"
+        nz-dropdown
+        nzTrigger="click"
+        [nzDropdownMenu]="menu"
+        (nzVisibleChange)="onDropdownVisibleChange($event)"
+      >
+        <span class="label">Administrador</span>
+        <img
+          class="icon-label"
+          [class.rotated]="isDropdownOpen()"
+          src="assets/arrow_down.svg"
+          alt="arrow down"
+        />
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul class="dropdown-menu" nz-menu>
+          <li nz-menu-item routerLink="/" routerLinkActive="active">Mi Perfil</li>
+          <li nz-menu-item routerLink="/" routerLinkActive="active">Mi cuenta</li>
+          <li nz-menu-item routerLink="/" routerLinkActive="active">Cerrar sesión</li>
+        </ul>
+      </nz-dropdown-menu>
+    </li>
+  </ng-container>
+  <li class="option-menu">
+    <div class="rectangle-container-logo-alt">
+      <a routerLink="/" class="link">
+        <figure class="logo">
+          <img src="/assets/logo_alt.svg" alt="" />
+        </figure>
+      </a>
+    </div>
+  </li>
+</ul>
