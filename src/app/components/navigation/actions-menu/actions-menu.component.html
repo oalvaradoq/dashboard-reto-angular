@@ -1,14 +1,63 @@
 <ul class="actions-menu">
   <ng-container>
     <li class="option-menu">
+      <a href="#" class="link">
+        <nz-icon>
+          <img src="assets/icon_briefcase.svg" alt="" />
+        </nz-icon>
+      </a>
+    </li>
+    <li>
+      <nz-divider class="full-height" nzType="vertical"></nz-divider>
+    </li>
+  </ng-container>
+  <ng-container>
+    <li class="option-menu">
+      <a href="#" class="link">
+        <nz-icon class="custom-action-question">
+          <img src="assets/icon_question_circle.svg" alt="question circle" />
+        </nz-icon>
+      </a>
+    </li>
+    <li>
+      <nz-divider class="full-height" nzType="vertical"></nz-divider>
+    </li>
+  </ng-container>
+  <ng-container>
+    <li class="option-menu">
+      <a href="#" class="link">
+        <nz-badge
+          class="badge"
+          [nzCount]="3"
+          nzSize="small"
+          [nzStyle]="{
+            'box-shadow': 'none',
+            'line-height': '10px',
+            'min-width': '12px',
+            height: '12px',
+            'font-size': '10px',
+          }"
+        >
+          <nz-icon nzType="bell" nzTheme="fill" style="font-size: 14px; color: #fff"></nz-icon>
+        </nz-badge>
+      </a>
+    </li>
+    <li>
+      <nz-divider class="full-height" nzType="vertical"></nz-divider>
+    </li>
+  </ng-container>
+  <ng-container>
+    <li class="option-menu">
       <nz-avatar
         nzText="A"
+        [nzSize]="38"
         style="
           background-image: url('/assets/bg_avatar.png');
           background-position: center;
           background-size: cover;
           background-repeat: no-repeat;
           margin: 0 5px;
+          font-size: 20px;
         "
       ></nz-avatar>
       <a

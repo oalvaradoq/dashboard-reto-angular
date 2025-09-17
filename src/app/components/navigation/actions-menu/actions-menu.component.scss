@@ -36,6 +36,12 @@ li.option-menu:last-child {
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.1);
 }
+.option-menu .link.active {
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
 .rectangle-container-logo-alt {
   display: flex;
   align-items: center;
@@ -68,4 +74,14 @@ ul.dropdown-menu {
 }
 ul.dropdown-menu li {
   border-radius: 4px;
+}
+.custom-action-question {
+  width: 21px;
+  height: 21px;
+  background-color: rgb(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
 }
