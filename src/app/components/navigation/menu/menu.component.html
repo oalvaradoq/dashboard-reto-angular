@@ -1,0 +1,99 @@
+<ul class="menu">
+  <li class="option-menu">
+    <a href="/">
+      <figure class="logo">
+        <img src="assets/logo_mandu.svg" alt="logo" height="20" width="78" />
+      </figure>
+    </a>
+  </li>
+  <ng-container>
+    <li>
+      <nz-divider class="full-height" nzType="vertical"></nz-divider>
+    </li>
+    <li class="option-menu">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link"
+      >
+        <span class="label">Dashboard</span>
+      </a>
+    </li>
+  </ng-container>
+  <ng-container>
+    <li>
+      <nz-divider class="full-height" nzType="vertical"></nz-divider>
+    </li>
+    <li class="option-menu">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link"
+      >
+        <span class="label">Organizacion</span>
+      </a>
+    </li>
+  </ng-container>
+  <ng-container>
+    <li>
+      <nz-divider class="full-height" nzType="vertical"></nz-divider>
+    </li>
+    <li class="option-menu">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link"
+        nz-dropdown
+        nzTrigger="click"
+        [nzDropdownMenu]="menu"
+        (nzVisibleChange)="onDropdownVisibleChange('modulos', $event)"
+      >
+        <span class="label">Modulos</span>
+        <img
+          class="icon-label"
+          [class.rotated]="isDropdownOpen('modulos')"
+          src="assets/arrow_down.svg"
+          alt="arrow down"
+        />
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul class="dropdown-menu" nz-menu>
+          <li nz-menu-item routerLink="/" routerLinkActive="active">Activos</li>
+          <li nz-menu-item routerLink="/" routerLinkActive="active">Archivados</li>
+        </ul>
+      </nz-dropdown-menu>
+    </li>
+  </ng-container>
+  <ng-container>
+    <li>
+      <nz-divider class="full-height" nzType="vertical"></nz-divider>
+    </li>
+    <li class="option-menu">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link"
+        nz-dropdown
+        nzTrigger="click"
+        [nzDropdownMenu]="menu"
+        (nzVisibleChange)="onDropdownVisibleChange('seguimiento', $event)"
+      >
+        <span class="label">Seguimiento</span>
+        <img
+          class="icon-label"
+          [class.rotated]="isDropdownOpen('seguimiento')"
+          src="assets/arrow_down.svg"
+          alt="arrow down"
+        />
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul class="dropdown-menu" nz-menu>
+          <li nz-menu-item routerLink="/" routerLinkActive="active">Activos</li>
+          <li nz-menu-item routerLink="/" routerLinkActive="active">Archivados</li>
+        </ul>
+      </nz-dropdown-menu>
+    </li>
+  </ng-container>
+</ul>

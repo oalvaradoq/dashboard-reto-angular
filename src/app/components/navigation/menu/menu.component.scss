@@ -1,0 +1,64 @@
+ul.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  line-height: 0;
+}
+li.option-menu {
+  align-items: stretch;
+  display: flex;
+  padding: 0 8px;
+}
+li.option-menu:first-child {
+  padding-left: 0;
+}
+li.option-menu:last-child {
+  padding-right: 0;
+}
+.full-height {
+  align-self: stretch;
+  height: 30px;
+  margin: 0px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.link:hover {
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+}
+.icon-label {
+  font-size: 20px;
+  color: #ffffff;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  padding: 7px;
+}
+ul.dropdown-menu li {
+  border-radius: 4px;
+}
