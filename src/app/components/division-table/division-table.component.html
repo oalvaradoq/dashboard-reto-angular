@@ -1,52 +1,49 @@
 <div>
-  <nz-table #basicTable>
+  <nz-table #basicTable [nzData]="divisions()" [nzPageSize]="10" nzBordered #rowSelectionTable>
     <thead>
       <tr>
-        <th>Division</th>
-        <th>Head</th>
-        <thead>
-          <tr>
-            <th>Division</th>
-            <th>Head</th>
-            <th>Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Marketing</td>
-            <td>Alice Johnson</td>
-            <td>New York</td>
-          </tr>
-          <tr>
-            <td>Sales</td>
-            <td>Bob Smith</td>
-            <td>Chicago</td>
-          </tr>
-          <tr>
-            <td>Development</td>
-            <td>Charlie Brown</td>
-            <td>San Francisco</td>
-          </tr>
-        </tbody>
-        <th>Location</th>
+        <th [nzChecked]="checked()"></th>
+        <th
+          [nzSortFn]="sortByDivision"
+          [nzFilterFn]="filterByDivision"
+          [nzFilters]="divisionFilters()"
+          [nzFilterMultiple]="true"
+        >
+          División
+        </th>
+        <th
+          [nzSortFn]="sortByDivisionUp"
+          [nzFilterFn]="filterByDivisionUp"
+          [nzFilters]="divisionUpFilters()"
+          [nzFilterMultiple]="true"
+        >
+          División Superior
+        </th>
+        <th [nzSortFn]="sortByCollaborators">Colaboradores</th>
+        <th
+          [nzSortFn]="sortByNivel"
+          [nzFilterFn]="filterByNivel"
+          [nzFilters]="nivelFilters()"
+          [nzFilterMultiple]="true"
+        >
+          Nivel
+        </th>
+        <th [nzSortFn]="sortBySubdivisions">Subdivisiones</th>
+        <th [nzSortFn]="sortByAmbassadors">Embajadores</th>
       </tr>
     </thead>
     <tbody>
+      @for (division of basicTable.data; track division.division) {
       <tr>
-        <td>Marketing</td>
-        <td>Alice Johnson</td>
-        <td>New York</td>
+        <td [nzChecked]="setOfCheckedId.has(division.id)"></td>
+        <td>{{ division.division }}</td>
+        <td>{{ division.divisionUp }}</td>
+        <td>{{ division.collaborators }}</td>
+        <td>{{ division.nivel }}</td>
+        <td>{{ division.subdivisions }}</td>
+        <td>{{ division.ambassadors || 'N/A' }}</td>
       </tr>
-      <tr>
-        <td>Sales</td>
-        <td>Bob Smith</td>
-        <td>Chicago</td>
-      </tr>
-      <tr>
-        <td>Development</td>
-        <td>Charlie Brown</td>
-        <td>San Francisco</td>
-      </tr>
+      }
     </tbody>
   </nz-table>
 </div>

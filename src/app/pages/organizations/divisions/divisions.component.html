@@ -1,3 +1,41 @@
 <div class="division-container">
-  <app-division-table></app-division-table>
+  <div class="division-actions">
+    <nz-radio-group
+      class="radio-group"
+      [ngModel]="radioValue()"
+      (ngModelChange)="onRadioChange($event)"
+    >
+      <label nz-radio-button nzValue="list">Listado</label>
+      <label nz-radio-button nzValue="tree">Arbol</label>
+    </nz-radio-group>
+    <ng-container>
+      <div class="search-container">
+        <nz-select
+          nzPlaceHolder="Columnas"
+          [ngModel]="selectedColumn()"
+          (ngModelChange)="onColumnSelect($event)"
+          style="width: 200px"
+        >
+          @for (column of columnsOptions(); track column.name) {
+          <nz-option [nzValue]="column.name" [nzLabel]="column.name"></nz-option>
+          }
+        </nz-select>
+        <div>
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input
+              type="text"
+              nz-input
+              placeholder="Buscar"
+              [ngModel]="inputSearch()"
+              (ngModelChange)="onInputSearch($event)"
+            />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <nz-icon nzType="search" style="color: #a1a1a1" />
+          </ng-template>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <app-division-table [divisions]="filteredData()"></app-division-table>
 </div>
