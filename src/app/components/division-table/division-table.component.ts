@@ -1,4 +1,4 @@
-import { Component, input, ChangeDetectionStrategy, signal, computed } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy, signal, computed, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -7,6 +7,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { Division } from '../../mockups/organizations/organization.mock';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 interface FilterOption {
   text: string;
@@ -23,6 +24,7 @@ interface FilterOption {
     NzCheckboxModule,
     NzButtonModule,
     FormsModule,
+    NzPaginationModule,
   ],
   templateUrl: './division-table.component.html',
   styleUrls: ['./division-table.component.scss'],
@@ -32,6 +34,9 @@ export class DivisionTableComponent {
   divisions = input<Division[]>([]);
   checked = signal(false);
   setOfCheckedId = new Set<number>();
+  pageIndex = signal(1);
+  pageSize = signal(10);
+  pageSizeOptions = [5, 10, 20, 50];
 
   sortByDivision = (a: Division, b: Division) => a.division.localeCompare(b.division);
   sortByDivisionUp = (a: Division, b: Division) => a.divisionUp.localeCompare(b.divisionUp);
@@ -48,6 +53,10 @@ export class DivisionTableComponent {
   nivelFilters = computed<FilterOption[]>(() => {
     const set = new Set(this.divisions().map((d) => d.nivel));
     return [...set].sort((a, b) => a - b).map((v) => ({ text: `Nivel ${v}`, value: v }));
+  });
+  totalPages = computed(() => {
+    const total = this.filteredDivisions().length;
+    return total === 0 ? 1 : Math.ceil(total / this.pageSize());
   });
 
   divisionSearchTerm = signal('');
@@ -97,5 +106,22 @@ export class DivisionTableComponent {
   }
   isDivisionChecked(value: string) {
     return this.selectedDivisionsDraft().has(value);
+  }
+  totalCollaboratorsFiltered = computed(() => {
+    return this.filteredDivisions().reduce((sum, division) => sum + division.collaborators, 0);
+  });
+
+  clampPageEffect = effect(() => {
+    const max = this.totalPages();
+    if (this.pageIndex() > max) {
+      this.pageIndex.set(max);
+    }
+  });
+  onPageIndexChange(i: number): void {
+    this.pageIndex.set(i);
+  }
+  onPageSizeChange(size: number): void {
+    this.pageSize.set(size);
+    this.pageIndex.set(1);
   }
 }

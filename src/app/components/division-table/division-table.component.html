@@ -2,7 +2,13 @@
   <nz-table
     #basicTable
     [nzData]="filteredDivisions()"
-    [nzPageSize]="10"
+    [nzPageSize]="pageSize()"
+    [nzPageIndex]="pageIndex()"
+    (nzPageIndexChange)="onPageIndexChange($event)"
+    (nzPageSizeChange)="onPageSizeChange($event)"
+    [nzTotal]="filteredDivisions().length"
+    [nzFooter]="footerTemplate"
+    [nzShowPagination]="false"
     nzBordered
     nzShowSizeChanger
   >
@@ -18,11 +24,7 @@
               (nzVisibleChange)="onDivisionFilterVisibleChange($event)"
               [nzDropdownMenu]="divisionFilterMenu"
             >
-              <span
-                nz-icon
-                nzType="filter"
-                [nzTheme]="selectedDivisionsApplied().size > 0 ? 'fill' : 'outline'"
-              ></span>
+              <span nz-icon nzType="filter" [nzTheme]="'fill'"></span>
             </nz-filter-trigger>
             <nz-dropdown-menu #divisionFilterMenu="nzDropdownMenu">
               <div class="division-filter-panel" (click)="$event.stopPropagation()">
@@ -99,4 +101,24 @@
       }
     </tbody>
   </nz-table>
+  <ng-template #footerTemplate>
+    <div class="table-footer">
+      <div class="footer-left">
+        Total de Colaboradores:
+        {{ totalCollaboratorsFiltered() }}
+      </div>
+      <div class="footer-right">
+        <nz-pagination
+          [nzPageIndex]="pageIndex()"
+          [nzTotal]="filteredDivisions().length"
+          [nzPageSize]="pageSize()"
+          [nzPageSizeOptions]="pageSizeOptions"
+          (nzPageIndexChange)="onPageIndexChange($event)"
+          (nzPageSizeChange)="onPageSizeChange($event)"
+          nzShowSizeChanger
+          nzResponsive
+        />
+      </div>
+    </div>
+  </ng-template>
 </div>

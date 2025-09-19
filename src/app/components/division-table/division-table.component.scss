@@ -53,3 +53,30 @@
 .actions button {
   flex: 1;
 }
+
+.custom-paged-table .ant-table-pagination {
+  display: none;
+}
+
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  font-size: 14px;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #979797;
+
+  .footer-left {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .footer-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+}
