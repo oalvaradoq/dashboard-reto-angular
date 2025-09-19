@@ -1,15 +1,68 @@
 <div>
-  <nz-table #basicTable [nzData]="divisions()" [nzPageSize]="10" nzBordered #rowSelectionTable>
+  <nz-table
+    #basicTable
+    [nzData]="filteredDivisions()"
+    [nzPageSize]="10"
+    nzBordered
+    nzShowSizeChanger
+  >
     <thead>
       <tr>
         <th [nzChecked]="checked()"></th>
-        <th
-          [nzSortFn]="sortByDivision"
-          [nzFilterFn]="filterByDivision"
-          [nzFilters]="divisionFilters()"
-          [nzFilterMultiple]="true"
-        >
-          División
+        <th [nzSortFn]="sortByDivision" nzCustomFilter>
+          <div class="division-col-header">
+            <span>División</span>
+            <nz-filter-trigger
+              [nzActive]="selectedDivisionsApplied().size > 0"
+              [nzVisible]="divisionFilterOpen()"
+              (nzVisibleChange)="onDivisionFilterVisibleChange($event)"
+              [nzDropdownMenu]="divisionFilterMenu"
+            >
+              <span
+                nz-icon
+                nzType="filter"
+                [nzTheme]="selectedDivisionsApplied().size > 0 ? 'fill' : 'outline'"
+              ></span>
+            </nz-filter-trigger>
+            <nz-dropdown-menu #divisionFilterMenu="nzDropdownMenu">
+              <div class="division-filter-panel" (click)="$event.stopPropagation()">
+                <div class="search-box">
+                  <nz-input-group nzSuffixIcon="search">
+                    <input
+                      type="text"
+                      nz-input
+                      [ngModel]="divisionSearchTerm()"
+                      (ngModelChange)="divisionSearchTerm.set($event)"
+                      placeholder="Buscar"
+                    />
+                  </nz-input-group>
+                  <ng-template>
+                    <nz-icon nzType="search"></nz-icon>
+                  </ng-template>
+                </div>
+                <div class="options">
+                  @for (opt of filteredDivisionOptions(); track opt) {
+                  <label class="option-item">
+                    <input
+                      type="checkbox"
+                      [checked]="isDivisionChecked(opt)"
+                      (change)="toggleDivisionOption(opt)"
+                    />
+                    <span>{{ opt }}</span>
+                  </label>
+                  } @if (filteredDivisionOptions().length === 0) {
+                  <div class="empty">Sin resultados</div>
+                  }
+                </div>
+                <div class="actions">
+                  <button nz-button nzType="link" (click)="applyDivisionFilter()">OK</button>
+                  <button nz-button nzType="link" (click)="clearDivisionFilter()">
+                    Restablecer
+                  </button>
+                </div>
+              </div>
+            </nz-dropdown-menu>
+          </div>
         </th>
         <th
           [nzSortFn]="sortByDivisionUp"
@@ -33,7 +86,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (division of basicTable.data; track division.division) {
+      @for (division of basicTable.data; track division.id) {
       <tr>
         <td [nzChecked]="setOfCheckedId.has(division.id)"></td>
         <td>{{ division.division }}</td>

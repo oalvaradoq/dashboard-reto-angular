@@ -1,0 +1,55 @@
+.division-col-header {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.division-filter-panel {
+  width: 220px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+.search-box {
+  padding: 12px;
+}
+.search-box input {
+  width: 100%;
+}
+.options {
+  max-height: 180px;
+  overflow-y: auto;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.option-item:hover {
+  background: #fafafa;
+}
+.empty {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  padding: 12px 8px;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 4px 12px;
+  & button {
+    padding: 0px;
+  }
+}
+.actions button {
+  flex: 1;
+}
